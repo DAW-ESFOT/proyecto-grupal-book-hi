@@ -2,6 +2,7 @@
 use App\Models\Business;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+Use App\Models\Chat;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,31 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
- //   return $request->user();
+
+//    return $request->user();
 //});
+
+Route::get('chat', function() {
+    return Chat::all();
+});
+Route::get('chat/{id}', function($id) {
+    return Chat::find($id);
+});
+Route::post('chat', function(Request $request) {
+    return Chat::create($request->all());
+});
+Route::put('chat/{id}', function(Request $request, $id) {
+    $article = Chat::findOrFail($id);
+    $article->update($request->all());
+    return $article;
+});
+Route::delete('chat/{id}', function($id) {
+    Chat::find($id)->delete();
+    return 204;
+});
+
+ /*   return $request->user();
+ });
     Route::get('businesses', function() {
                 return Business::all();
     });
@@ -39,3 +63,5 @@ use Illuminate\Support\Facades\Route;
      
     return 204;
     });
+*/
+
