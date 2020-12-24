@@ -1,5 +1,5 @@
 <?php
-
+use App\Models\Business;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 Use App\Models\Chat;
@@ -16,6 +16,7 @@ Use App\Models\Chat;
 */
 
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
+
 //    return $request->user();
 //});
 
@@ -37,3 +38,30 @@ Route::delete('chat/{id}', function($id) {
     Chat::find($id)->delete();
     return 204;
 });
+
+ /*   return $request->user();
+ });
+    Route::get('businesses', function() {
+                return Business::all();
+    });
+    Route::get('businesses/{id}', function($id) {
+    return Business::find($id);
+    });
+
+    Route::post('businesses', function(Request $request) {
+        return Business::create($request->all());
+    });
+
+    Route::put('businesses/{id}', function(Request $request, $id) {
+        $business = Business::findOrFail($id);
+        $business->update($request->all());
+        return $business;
+    });
+    Route::delete('businesses/{id}', function($id) {
+     
+        Business::find($id)->delete();
+     
+    return 204;
+    });
+*/
+
