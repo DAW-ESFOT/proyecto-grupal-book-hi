@@ -19,6 +19,7 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
+
       <path value="$PROJECT_DIR$/vendor/filp/whoops" />
       <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
       <path value="$PROJECT_DIR$/vendor/ramsey/collection" />
