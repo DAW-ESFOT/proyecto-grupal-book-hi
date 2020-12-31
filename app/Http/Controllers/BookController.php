@@ -20,7 +20,7 @@ class BookController extends Controller
         $book = Book::create($request->all());
         return response()->json($book,201);
     }
-    public function update(Request $request, $book)
+    public function update(Request $request, Book $book)
     {
         $book->update($request->all());
         return response()->json($book,200);
