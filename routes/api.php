@@ -48,27 +48,27 @@ use Illuminate\Support\Facades\Route;
     Route::post('login', 'App\\Http\\Controllers\\UserController@authenticate');
     Route::get('businesses', 'App\\Http\\Controllers\\BusinessController@index');
     Route::get('books', 'App\\Http\\Controllers\\BookController@index');
- 
+
     Route::group(['middleware' => ['jwt.verify']], function() {
 
         Route::get('user', 'App\\Http\\Controllers\\UserController@getAuthenticatedUser');
-        
+
         //CHAT
         Route::get('chat', 'App\\Http\\Controllers\\ChatController@index');
         Route::get('chat/{chat}', 'App\\Http\\Controllers\\ChatController@show');
         Route::post('chat', 'App\\Http\\Controllers\\ChatController@store');
         Route::put('chat/{chat}', 'App\\Http\\Controllers\\ChatController@update');
         Route::delete('chat/{chat}', 'App\\Http\\Controllers\\ChatController@delete');
-        
+
         //BUSINESSES
         Route::get('businesses/{business}', 'App\\Http\\Controllers\\BusinessController@show');
         Route::post('businesses', 'App\\Http\\Controllers\\BusinessController@store');
         Route::put('businesses/{business}', 'App\\Http\\Controllers\\BusinessController@update');
         Route::delete('businesses/{business}', 'App\\Http\\Controllers\\BusinessController@delete');
-        
+
         //BOOKS
         Route::get('books/{book}', 'App\\Http\\Controllers\\BookController@show');
         Route::post('books', 'App\\Http\\Controllers\\BookController@store');
         Route::put('books/{book}', 'App\\Http\\Controllers\\BookController@update');
         Route::delete('books/{book}', 'App\\Http\\Controllers\\BookController@delete');
-    });    
+    });

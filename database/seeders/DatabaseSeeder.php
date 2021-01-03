@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Book;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Business;
+use Illuminate\Support\Facades\Schema;
 
 
 class DatabaseSeeder extends Seeder
@@ -18,9 +18,11 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        $this->call(BooksTableSeeder::class);
-        $this->call(ChatTableSeeder::class);
+        Schema::disableForeignKeyConstraints();
         $this->call(UsersTableSeeder::class);
+        $this->call(BooksTableSeeder::class);
         $this->call(BusinessesTableSeeder::class);
+        $this->call(ChatTableSeeder::class);
+        Schema::enableForeignKeyConstraints();
     }
 }

@@ -29,6 +29,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@prueba.com',
             'password' => $password,
         ]);
+
+
         // Generar algunos usuarios para nuestra aplicacion
         for ($i = 0; $i < 10; $i++) {
             User::create([
@@ -37,7 +39,7 @@ class UsersTableSeeder extends Seeder
                 'nickname' => $faker->userName,
                 'email' => $faker->email,
                 'password' => $password,
-            ]);     
+            ]);
         }
     }
 }
