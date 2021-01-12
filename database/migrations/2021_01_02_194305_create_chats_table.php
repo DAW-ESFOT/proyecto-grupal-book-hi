@@ -15,13 +15,12 @@ class CreateChatsTable extends Migration
     {
         Schema::create('chats', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('message');
             $table->unsignedBigInteger('businesses_id');
             $table->foreign('businesses_id')->references('id')->on('businesses')->onDelete('restrict');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
             $table->timestamps();
- });
+        });
     }
 
     /**

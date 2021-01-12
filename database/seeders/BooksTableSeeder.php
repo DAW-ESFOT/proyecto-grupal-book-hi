@@ -29,23 +29,17 @@ class BooksTableSeeder extends Seeder
             JWTAuth::attempt(['email' => $user->email, 'password' => '123123']);
             // Y ahora con este usuario creamos algunos libros
             $num_books = 5;
-            $book_status = 'new';
-            $donation = 'yes';
-            $available_status = 'available';
             for ($j = 0; $j < $num_books; $j++) {
                 Book::create([
                     'title' => $faker->sentence,
                     'author' => $faker->name,
                     'editorial' => $faker->sentence,
-                    'year_edition' => $faker->dateTime,
+                    'year_edition' => $faker->numberBetween(1700, 2020),
                     'price' => $faker->randomFloat(2, 1, 10),
                     'pages' => $faker->numberBetween(10, 1000),
                     'synopsis' => $faker->paragraph,
-                    'book_status' => $book_status,
                     'cover_page' => $faker->sentence,
                     'back_cover' => $faker->sentence,
-                    'donation' => $donation,
-                    'available_status' => $available_status,
                 ]);
             }
         }

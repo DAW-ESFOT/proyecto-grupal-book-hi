@@ -22,17 +22,16 @@ class ChatTableSeeder extends Seeder
         Chat::truncate();
         $faker = \Faker\Factory::create();
         // Obtenemos todos los negocios de la bdd
-        $articles = Business::all();
+        $businesses = Business::all();
         // Obtenemos todos los usuarios
         $users = User::all();
         foreach ($users as $user) {
             // iniciamos sesión con cada uno
             JWTAuth::attempt(['email' => $user->email, 'password' => '123123']);
-            // Creamos un comentario para cada artículo con este usuario
-            foreach ($articles as $article) {
+            // Creamos un chat para cada negocio con este usuario
+            foreach ($businesses as $business) {
                 Chat::create([
-                    'message' => $faker->sentence,
-                    'businesses_id' => $article->id,
+                    'businesses_id' => $business->id,
                 ]);
             }
         }

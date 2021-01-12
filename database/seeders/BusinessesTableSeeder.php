@@ -32,22 +32,21 @@ class BusinessesTableSeeder extends Seeder
             JWTAuth::attempt(['email' => $user->email, 'password' => '123123']);
             // Y ahora con este usuario creamos algunos negocios
             $num_business = 3;
-            $password = Hash::make('123123');
             for ($j = 0; $j < $num_business; $j++) {
                 $business = Business::create([
                     'ruc' => $faker->ean8,
                     'name' => $faker->name,
-                    'email' => $faker->email,
-                    'address' => $faker->address,
-                    'password' => $password,
+                    'address' => $faker->address
                 ]);
                 $business->books()->saveMany(
                     $faker->randomElements(
                         array(
                             Book::find(1),
                             Book::find(2),
-                            Book::find(3)
-                        ), $faker->numberBetween(1, 3), false
+                            Book::find(3),
+                            Book::find(4),
+                            Book::find(5),
+                        ), $faker->numberBetween(1, 5), false
                     )
                 );
             }
