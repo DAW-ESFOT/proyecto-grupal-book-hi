@@ -17,7 +17,10 @@ class Book extends Model
         'pages',
         'synopsis',
         'cover_page',
-        'back_cover',];
+        'back_cover',
+        'available',
+        'new'
+    ];
 
     public static function boot()
     {
@@ -31,12 +34,6 @@ class Book extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
-
-    public function businesses()
-    {
-        return $this->belongsToMany('App\Models\Business')->withTimestamps()->withPivot('available', 'new');
-    }
-
 }
 
 

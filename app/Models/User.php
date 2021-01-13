@@ -23,6 +23,10 @@ class User extends Authenticatable implements JWTSubject
         'nickname',
         'email',
         'password',
+        'ruc',
+        'bussiness_name',
+        'address',
+        'bussiness_description'
     ];
 
     /**
@@ -59,12 +63,12 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Models\Book');
     }
 
-    public function businesses()
+    public function chat1()
     {
-        return $this->hasMany('App\Models\Business');
+        return $this->hasMany('App\Models\Chat');
     }
 
-    public function chats()
+    public function chat2()
     {
         return $this->hasMany('App\Models\Chat');
     }
