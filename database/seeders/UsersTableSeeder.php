@@ -28,6 +28,10 @@ class UsersTableSeeder extends Seeder
             'nickname' => 'Admin',
             'email' => 'admin@prueba.com',
             'password' => $password,
+            'ruc' => '1234567890',
+            'bussiness_name' => 'Negocio prueba',
+            'bussiness_address' => 'Dirección',
+            'bussiness_description' => 'Ejemplo de descripción'
         ]);
 
 
@@ -40,6 +44,10 @@ class UsersTableSeeder extends Seeder
                 'nickname' => $faker->userName,
                 'email' => $faker->email,
                 'password' => $password,
+                'ruc' => $faker->ean8,
+                'bussiness_name' => $faker->name,
+                'bussiness_address' => $faker->address,
+                'bussiness_description' => $faker->text
             ]);
         }
     }

@@ -24,16 +24,9 @@ class CreateBooksTable extends Migration
             $table->text('synopsis');
             $table->string('cover_page');
             $table->string('back_cover');
+            $table->boolean('available');
+            $table->boolean('new');
             $table->timestamps();
-        });
-        Schema::create('book_business', function (Blueprint $table) {
-            $table->unsignedBigInteger('book_id');
-            $table->foreign('book_id')->references('id')->on('books')->onDelete('restrict');
-            $table->unsignedBigInteger('business_id');
-            $table->foreign('business_id')->references('id')->on('businesses')->onDelete('restrict');
-            $table->timestamps();
-            $table->boolean('available')->default(1);
-            $table->boolean('new')->default(1);
         });
     }
 
@@ -46,7 +39,6 @@ class CreateBooksTable extends Migration
     {
 
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('book_business');
         Schema::dropIfExists('books');
         Schema::enableForeignKeyConstraints();
     }

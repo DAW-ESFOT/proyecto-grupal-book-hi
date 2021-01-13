@@ -30,6 +30,10 @@ class UserController extends Controller
             'nickname' => 'required|string|max:50',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'ruc' => 'unrequired|bigInteger|max:10',
+            'bussiness_name' => 'unrequired|string|max:100',
+            'bussiness_address' => 'unrequired|string|max:100',
+            'bussiness_description' => 'unrequired|text|max:1000'
         ]);
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);

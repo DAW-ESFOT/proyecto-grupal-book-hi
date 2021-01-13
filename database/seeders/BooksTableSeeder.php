@@ -40,6 +40,8 @@ class BooksTableSeeder extends Seeder
                     'synopsis' => $faker->paragraph,
                     'cover_page' => $faker->sentence,
                     'back_cover' => $faker->sentence,
+                    'available' => $faker->boolean,
+                    'new' => $faker->boolean
                 ]);
             }
         }
