@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chat;
+use App\Http\Resources\Chat as ChatResource;
 use Illuminate\Http\Request;
 
 class ChatController extends Controller
@@ -13,7 +14,7 @@ class ChatController extends Controller
     }
     public function show(Chat $chat)
     {
-        return $chat;
+        return response()->json(new ChatResource($chat), 200);
     }
     public function store(Request $request)
     {
