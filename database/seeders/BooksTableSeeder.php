@@ -41,7 +41,8 @@ class BooksTableSeeder extends Seeder
                     'cover_page' => $faker->sentence,
                     'back_cover' => $faker->sentence,
                     'available' => $faker->boolean,
-                    'new' => $faker->boolean
+                    'new' => $faker->boolean,
+                    'category_id' => $faker->numberBetween(1,5)
                 ]);
             }
         }
