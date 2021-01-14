@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Http\Resources\Book as BookResource;
+use App\Http\Resources\BookCollection;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
     public function index()
     {
-        return Book::all();
+        return new BookCollection(Book::paginate(10));
     }
     public function show(Book $book)
     {
-        return $book;
+        return response()->json(new BookResource($book), 200);
     }
     public function store(Request $request)
     {
