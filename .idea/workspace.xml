@@ -23,10 +23,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0fb84ecc-e8e4-437c-9cd2-daabb4a56f93" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/phpunit.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/proyecto-grupal-book-hi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/proyecto-grupal-book-hi.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BookController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BookController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -201,6 +204,11 @@
       <workItem from="1609972292357" duration="30000" />
       <workItem from="1610380328218" duration="3136000" />
       <workItem from="1610412308424" duration="17764000" />
+      <workItem from="1610467095104" duration="500000" />
+      <workItem from="1610492520378" duration="4125000" />
+      <workItem from="1610577637847" duration="3778000" />
+      <workItem from="1610804237910" duration="923000" />
+      <workItem from="1610824105669" duration="9391000" />
     </task>
     <servers />
   </component>
@@ -224,12 +232,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="514" y="136" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1609894768832" />
-    <state x="412" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1610799830048">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="463" y="134" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1610839813876">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="410" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1360.728@0.0.1360.728" timestamp="1609368102074" />
-    <state x="412" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1610799830048" />
-    <state x="463" y="134" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1610430158583" />
+    <state x="463" y="134" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1610839813876" />
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1609961167539">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
