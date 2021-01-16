@@ -9,20 +9,35 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+
 class UserController extends Controller
 {
+    public static $messages = [];
+    public static $rules = [
+        'name'=> 'required|string',
+        'last_name'=>'required|string',
+        'nickname'=>'max:255',
+        'email'=>'required|e-mail',
+        'password'=>'required',
+        'ruc'=>'numeric',
+        'bussiness_name'=>'max:255',
+        'bussiness_address'=>'max:255',
+        'bussiness_description'=>''
+    ];
+
     public function authenticate(Request $request)
     {
         $credentials = $request->only('email', 'password');
         try {
-        if (! $token = JWTAuth::attempt($credentials)) {
-            return response()->json(['error' => 'invalid_credentials'], 400);
-        }
+            if (!$token = JWTAuth::attempt($credentials)) {
+                return response()->json(['error' => 'invalid_credentials'], 400);
+            }
         } catch (JWTException $e) {
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
-            return response()->json(compact('token'));
+        return response()->json(compact('token'));
     }
+
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -36,7 +51,7 @@ class UserController extends Controller
             'bussiness_address' => 'unrequired|string|max:100',
             'bussiness_description' => 'unrequired|text|max:1000'
         ]);
-        if($validator->fails()){
+        if ($validator->fails()) {
             return response()->json($validator->errors()->toJson(), 400);
         }
         $user = User::create([
@@ -47,12 +62,13 @@ class UserController extends Controller
             'password' => Hash::make($request->get('password')),
         ]);
         $token = JWTAuth::fromUser($user);
-            return response()->json(compact('user','token'),201);
-        }
+        return response()->json(compact('user', 'token'), 201);
+    }
+
     public function getAuthenticatedUser()
     {
         try {
-            if (! $user = JWTAuth::parseToken()->authenticate()) {
+            if (!$user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             }
         } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
@@ -62,16 +78,18 @@ class UserController extends Controller
         } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
             return response()->json(['token_absent'], $e->getStatusCode());
         }
-            return response()->json(compact('user'));
+        return response()->json(compact('user'));
     }
 
     public function show(User $user)
     {
         return response()->json(new UserResource($user), 200);
     }
+
     public function update(Request $request, User $user)
     {
+        $request->validate(self::$rules, self::$messages);
         $user->update($request->all());
-        return response()->json($user,200);
+        return response()->json($user, 200);
     }
 }
