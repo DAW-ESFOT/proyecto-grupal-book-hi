@@ -49,12 +49,13 @@ use Illuminate\Support\Facades\Route;
     Route::get('books', 'App\\Http\\Controllers\\BookController@index');
     Route::get('books/{book}', 'App\\Http\\Controllers\\BookController@show');
     Route::get('categories', 'App\\Http\\Controllers\\CategoryController@index');
-    Route::get('categories/{category}', 'App\\Http\\Controllers\\CategoryController@show');    
+    Route::get('categories/{category}', 'App\\Http\\Controllers\\CategoryController@show');
 
     Route::group(['middleware' => ['jwt.verify']], function() {
 
         Route::get('user', 'App\\Http\\Controllers\\UserController@getAuthenticatedUser');
-
+        Route::get('users/{user}', 'App\\Http\\Controllers\\UserController@show');
+        Route::put('users/{user}', 'App\\Http\\Controllers\\UserController@update');
         //CHAT
         Route::get('chats', 'App\\Http\\Controllers\\ChatController@index');
         Route::get('chats/{chat}', 'App\\Http\\Controllers\\ChatController@show');
