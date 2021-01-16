@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Http\Resources\User as UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -63,4 +64,14 @@ class UserController extends Controller
         }
             return response()->json(compact('user'));
     }
-}    
+
+    public function show(User $user)
+    {
+        return response()->json(new UserResource($user), 200);
+    }
+    public function update(Request $request, User $user)
+    {
+        $user->update($request->all());
+        return response()->json($user,200);
+    }
+}
