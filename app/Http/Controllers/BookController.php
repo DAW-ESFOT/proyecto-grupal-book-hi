@@ -31,11 +31,15 @@ class BookController extends Controller
 
     public function index()
     {
+       //$this->authorize('ViewAny',Book::class);
+
         return new BookCollection(Book::paginate(10));
     }
 
     public function show(Book $book)
     {
+        //$this->authorize('View',Book::class);
+
         return response()->json(new BookResource($book), 200);
     }
 
@@ -48,6 +52,8 @@ class BookController extends Controller
      */
     public function store(Request $request, User $user)
     {
+        //$this->authorize('create',$book);
+
         $request->validate(self::$rules, self::$messages);
 //        $book = Book::create($request->all());
 //        return response()->json($book,201);
@@ -58,6 +64,8 @@ class BookController extends Controller
 
     public function update(Request $request, Book $book)
     {
+        $this->authorize('update',$book);
+
         $request->validate(self::$rules, self::$messages);
         $book->update($request->all());
         return response()->json($book, 200);
@@ -65,6 +73,8 @@ class BookController extends Controller
 
     public function delete(Book $book)
     {
+        $this->authorize('delete',$book);
+
         $book->delete();
         return response()->json(null, 204);
     }

@@ -44,7 +44,11 @@ use Illuminate\Support\Facades\Route;
         //BOOKS
         Route::get('users/{user}/books', 'App\\Http\\Controllers\\BookController@showmybooks');
         Route::get('users/{user}/books/{book}', 'App\\Http\\Controllers\\BookController@showmybook');
-        Route::post('user/books', 'App\\Http\\Controllers\\BookController@store');
-        Route::put('user/books/{book}', 'App\\Http\\Controllers\\BookController@update');
-        Route::delete('user/books/{book}', 'App\\Http\\Controllers\\BookController@delete');
+        Route::post('users/books', 'App\\Http\\Controllers\\BookController@store');
+        Route::put('books/{book}', 'App\\Http\\Controllers\\BookController@update');
+        Route::delete('books/{book}', 'App\\Http\\Controllers\\BookController@delete');
+
+        //CATEGORIES
+        //Route::put('categories/{category}', 'App\\Http\\Controllers\\CategoryController@update');
+
     });
