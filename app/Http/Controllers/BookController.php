@@ -23,8 +23,8 @@ class BookController extends Controller
         'price' => 'required|numeric',
         'pages' => 'required|numeric',
         'synopsis' => 'required|string|max:255',
-        'cover_page' => '',
-        'back_cover' => '',
+        'cover_page' => 'required|image|dimensions:min_width=200,min_height=200',
+        'back_cover' => 'required|image|dimensions:min_width=200,min_height=200',
         'available' => 'required|boolean',
         'new' => 'required|boolean'
     ];
@@ -57,9 +57,14 @@ class BookController extends Controller
         $request->validate(self::$rules, self::$messages);
 //        $book = Book::create($request->all());
 //        return response()->json($book,201);
-
-        $book = $user->books()->save(new Book($request->all()));
-        return response()->json($book, 201);
+        $book = new Book($request->all());
+        $pathcp = $request->cover_page->store('public/books/cover_pages');
+        $pathbc = $request->back_cover->store('public/books/back_cover');
+        $book->cover_page = $pathcp;
+        $book->back_cover = $pathbc;
+        $book->save();
+        //$book = $user->books()->save(new Book($request->all()));
+        return response()->json(new BookResource($book), 201);
     }
 
     public function update(Request $request, Book $book)

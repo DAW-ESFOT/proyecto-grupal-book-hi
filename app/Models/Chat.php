@@ -14,20 +14,19 @@ class Chat extends Model
     public static function boot()
     {
         parent::boot();
-        static::creating(function ($book) {
-            $book->user_id1 = Auth::id();
-            $book->user_id2 = Auth::id();
+        static::creating(function ($chat) {
+            $chat->user_id1 = Auth::id();
         });
     }
 
     public function user1()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\User', 'user_id1');
     }
 
     public function user2()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\User', 'user_id2');
     }
 
     public function Messages()

@@ -38,8 +38,8 @@ class BooksTableSeeder extends Seeder
                     'price' => $faker->randomFloat(2, 1, 10),
                     'pages' => $faker->numberBetween(10, 1000),
                     'synopsis' => $faker->paragraph,
-                    'cover_page' => $faker->sentence,
-                    'back_cover' => $faker->sentence,
+                    'cover_page' => $faker->imageUrl(400,300, null, false),
+                    'back_cover' => $faker->imageUrl(400,300, null, false),
                     'available' => $faker->boolean,
                     'new' => $faker->boolean,
                     'category_id' => $faker->numberBetween(1,5)

@@ -21,13 +21,14 @@ class ChatTableSeeder extends Seeder
         Chat::truncate();
         // Obtenemos todos los usuarios
         $users = User::all();
+        $var = 5;
         foreach ($users as $user) {
             // iniciamos sesión con cada uno
             JWTAuth::attempt(['email' => $user->email, 'password' => '123123']);
             // Creamos un chat para cada negocio con este usuario
                 Chat::create([
                     'user_id1' => $user->id,
-                    'user_id2' => $user->id,
+                    'user_id2' => $var,
                 ]);
         }
     }
