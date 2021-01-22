@@ -22,10 +22,10 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('image');
-            $table->bigInteger('ruc');
-            $table->string('bussiness_name');
-            $table->string('bussiness_address');
-            $table->text('bussiness_description');
+            $table->bigInteger('ruc')->nullable();
+            $table->string('bussiness_name')->nullable();
+            $table->string('bussiness_address')->nullable();
+            $table->text('bussiness_description')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

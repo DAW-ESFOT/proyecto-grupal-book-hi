@@ -19,10 +19,11 @@ class UserController extends Controller
         'nickname'=>'max:255',
         'email'=>'required|e-mail',
         'password'=>'required',
-        'ruc'=>'numeric',
-        'bussiness_name'=>'max:255',
-        'bussiness_address'=>'max:255',
-        'bussiness_description'=>''
+        'image' => 'required|image|dimensions:min_width=200,min_height=200',
+        'ruc'=>'nullable|numeric',
+        'bussiness_name'=>'nullable|max:255',
+        'bussiness_address'=>'nullable|max:255',
+        'bussiness_description'=>'nullable|string|max:1000'
     ];
 
     public function authenticate(Request $request)
@@ -46,20 +47,23 @@ class UserController extends Controller
             'nickname' => 'required|string|max:50',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'ruc' => 'unrequired|bigInteger|max:10',
-            'bussiness_name' => 'unrequired|string|max:100',
-            'bussiness_address' => 'unrequired|string|max:100',
-            'bussiness_description' => 'unrequired|text|max:1000'
+            'image' => 'required|image|dimensions:min_width=200,min_height=200',
+            'ruc' => 'nullable|bigInteger|max:10',
+            'bussiness_name' => 'nullable|string|max:100',
+            'bussiness_address' => 'nullable|string|max:100',
+            'bussiness_description' => 'nullable|text|max:1000'
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors()->toJson(), 400);
         }
+        $path = $request->image->store('public/images');
         $user = User::create([
             'name' => $request->get('name'),
             'last_name' => $request->get('last_name'),
             'nickname' => $request->get('nickname'),
             'email' => $request->get('email'),
             'password' => Hash::make($request->get('password')),
+            'image' => $path,
         ]);
         $token = JWTAuth::fromUser($user);
         return response()->json(compact('user', 'token'), 201);

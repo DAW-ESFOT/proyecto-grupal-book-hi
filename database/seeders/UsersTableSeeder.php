@@ -45,7 +45,7 @@ class UsersTableSeeder extends Seeder
                 'nickname' => $faker->userName,
                 'email' => $faker->email,
                 'password' => $password,
-                'image'=> 'hi',
+                'image'=> $faker->imageUrl(400,300, null, false),
                 'ruc' => $faker->ean8,
                 'bussiness_name' => $faker->name,
                 'bussiness_address' => $faker->address,
