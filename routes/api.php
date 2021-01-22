@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 
     Route::post('register', 'App\\Http\\Controllers\\UserController@register');
     Route::post('login', 'App\\Http\\Controllers\\UserController@authenticate');
-    //Route::get('users', 'App\\Http\\Controllers\\UserController@index');
     Route::get('books', 'App\\Http\\Controllers\\BookController@index');
     Route::get('books/{book}', 'App\\Http\\Controllers\\BookController@show');
     Route::get('categories', 'App\\Http\\Controllers\\CategoryController@index');
@@ -28,17 +27,13 @@ use Illuminate\Support\Facades\Route;
         Route::put('users/{user}', 'App\\Http\\Controllers\\UserController@update');
 
         //CHAT
-        Route::get('chats', 'App\\Http\\Controllers\\ChatController@index');
-        Route::get('chats/{chat}', 'App\\Http\\Controllers\\ChatController@show');
+        Route::get('user/chats', 'App\\Http\\Controllers\\ChatController@index');
         Route::post('chats', 'App\\Http\\Controllers\\ChatController@store');
-        Route::put('chats/{chat}', 'App\\Http\\Controllers\\ChatController@update');
         Route::delete('chats/{chat}', 'App\\Http\\Controllers\\ChatController@delete');
 
         //MESSAGES
-        Route::get('messages', 'App\\Http\\Controllers\\MessageController@index');
-        Route::get('messages/{message}', 'App\\Http\\Controllers\\MessageController@show');
+        Route::get('messages/chat/{message}', 'App\\Http\\Controllers\\MessageController@show');
         Route::post('messages', 'App\\Http\\Controllers\\MessageController@store');
-        Route::put('messages/{message}', 'App\\Http\\Controllers\\MessageController@update');
         Route::delete('messages/{message}', 'App\\Http\\Controllers\\MessageController@delete');
 
         //BOOKS

@@ -23,6 +23,7 @@ class User extends Authenticatable implements JWTSubject
         'nickname',
         'email',
         'password',
+        'image',
         'ruc',
         'bussiness_name',
         'bussiness_address',
@@ -71,13 +72,14 @@ class User extends Authenticatable implements JWTSubject
 
     public function chat1()
     {
-        return $this->hasMany('App\Models\Chat');
+        return $this->hasMany('App\Models\Chat', 'user_id1' );
     }
 
     public function chat2()
     {
-        return $this->hasMany('App\Models\Chat');
+        return $this->hasMany('App\Models\Chat', 'user_id2');
     }
+
     public function isGranted($role)
     {
         return $role === $this->role || in_array($role,self::ROLES_HIERARCHY[$this->role]);

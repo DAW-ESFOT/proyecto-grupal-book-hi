@@ -6,6 +6,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class Chat extends JsonResource
 {
+
+    public function __construct($resource)
+    {
+        parent::__construct($resource);
+    }
+
     /**
      * Transform the resource into an array.
      *
@@ -16,8 +22,8 @@ class Chat extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user1' => "/api/users/" .$this->user_id1,
-            'user2' => "/api/users/" .$this->user_id2,
+            'user1' => $this->user1->name . ' ' . $this->user1->last_name,
+            'user2' => $this->user2->name . ' ' . $this->user2->last_name,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ];
