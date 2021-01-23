@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class Chat extends Model
 {
 //    use HasFactory;
-    protected $fillable = [];
+    protected $fillable = ['user_id2'];
 
     public static function boot()
     {
@@ -29,8 +29,8 @@ class Chat extends Model
         return $this->belongsTo('App\Models\User', 'user_id2');
     }
 
-    public function Messages()
+    public function messages()
     {
-        return $this->hasMany('App\Models\Messages');
+        return $this->hasMany('App\Models\Message');
     }
 }

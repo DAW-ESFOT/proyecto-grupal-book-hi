@@ -8,6 +8,7 @@ use App\Http\Resources\BookCollection;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -24,7 +25,7 @@ class BookController extends Controller
         'pages' => 'required|numeric',
         'synopsis' => 'required|string|max:255',
         'cover_page' => 'required|image|dimensions:min_width=200,min_height=200',
-        'back_cover' => 'required|image|dimensions:min_width=200,min_height=200',
+        'back_cover' => 'image|dimensions:min_width=200,min_height=200',
         'available' => 'required|boolean',
         'new' => 'required|boolean'
     ];
@@ -90,8 +91,9 @@ class BookController extends Controller
      * @param User $user
      * @return \Illuminate\Http\JsonResponse
      */
-    public function showmybooks(User $user)
+    public function showmybooks()
     {
+        $user = Auth::user();
         return response()->json(BookResource::collection($user->books), 200);
     }
 
@@ -100,8 +102,9 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function showmybook(User $user, Book $book)
+    public function showmybook(Book $book)
     {
+        $user = Auth::user();
         $book = $user->books()->where('id', $book->id)->firstOrFail();
         return response()->json($book, 200);
     }
