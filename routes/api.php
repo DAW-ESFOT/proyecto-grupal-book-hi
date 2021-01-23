@@ -13,37 +13,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-    Route::post('register', 'App\\Http\\Controllers\\UserController@register');
-    Route::post('login', 'App\\Http\\Controllers\\UserController@authenticate');
-    Route::get('books', 'App\\Http\\Controllers\\BookController@index');
-    Route::get('books/{book}', 'App\\Http\\Controllers\\BookController@show');
-    Route::get('categories', 'App\\Http\\Controllers\\CategoryController@index');
-    Route::get('categories/{category}', 'App\\Http\\Controllers\\CategoryController@show');
+Route::post('register', 'App\\Http\\Controllers\\UserController@register');
+Route::post('login', 'App\\Http\\Controllers\\UserController@authenticate');
+Route::get('books', 'App\\Http\\Controllers\\BookController@index');
+Route::get('books/{book}', 'App\\Http\\Controllers\\BookController@show');
+Route::get('categories', 'App\\Http\\Controllers\\CategoryController@index');
+Route::get('categories/{category}', 'App\\Http\\Controllers\\CategoryController@show');
 
-    Route::group(['middleware' => ['jwt.verify']], function() {
+Route::group(['middleware' => ['jwt.verify']], function () {
 
-        Route::get('user', 'App\\Http\\Controllers\\UserController@getAuthenticatedUser');
-        Route::get('users/{user}', 'App\\Http\\Controllers\\UserController@show');
-        Route::put('users/{user}', 'App\\Http\\Controllers\\UserController@update');
+    Route::get('user', 'App\\Http\\Controllers\\UserController@getAuthenticatedUser');
+    Route::get('users/{user}', 'App\\Http\\Controllers\\UserController@show');
+    Route::put('users/{user}', 'App\\Http\\Controllers\\UserController@update');
 
-        //CHAT
-        Route::get('user/chats', 'App\\Http\\Controllers\\ChatController@index');
-        Route::post('chats', 'App\\Http\\Controllers\\ChatController@store');
-        Route::delete('chats/{chat}', 'App\\Http\\Controllers\\ChatController@delete');
+    //CHAT
+    Route::get('chats', 'App\\Http\\Controllers\\ChatController@index');
+    Route::post('chats', 'App\\Http\\Controllers\\ChatController@store');
+    Route::delete('chats/{chat}', 'App\\Http\\Controllers\\ChatController@delete');
 
-        //MESSAGES
-        Route::get('messages/chat/{message}', 'App\\Http\\Controllers\\MessageController@show');
-        Route::post('messages', 'App\\Http\\Controllers\\MessageController@store');
-        Route::delete('messages/{message}', 'App\\Http\\Controllers\\MessageController@delete');
+    //MESSAGES
+    Route::get('chats/{chat}/messages', 'App\\Http\\Controllers\\MessageController@index');
+    Route::post('chats/{chat}/messages', 'App\\Http\\Controllers\\MessageController@store');
+    Route::delete('chat/messages/{message}', 'App\\Http\\Controllers\\MessageController@delete');
 
-        //BOOKS
-        Route::get('users/{user}/books', 'App\\Http\\Controllers\\BookController@showmybooks');
-        Route::get('users/{user}/books/{book}', 'App\\Http\\Controllers\\BookController@showmybook');
-        Route::post('users/books', 'App\\Http\\Controllers\\BookController@store');
-        Route::put('books/{book}', 'App\\Http\\Controllers\\BookController@update');
-        Route::delete('books/{book}', 'App\\Http\\Controllers\\BookController@delete');
+    //BOOKS
+    Route::get('user/books', 'App\\Http\\Controllers\\BookController@showmybooks');
+    Route::get('user/books/{book}', 'App\\Http\\Controllers\\BookController@showmybook');
+    Route::post('user/books', 'App\\Http\\Controllers\\BookController@store');
+    Route::put('user/books/{book}', 'App\\Http\\Controllers\\BookController@update');
+    Route::delete('user/books/{book}', 'App\\Http\\Controllers\\BookController@delete');
 
-        //CATEGORIES
-        //Route::put('categories/{category}', 'App\\Http\\Controllers\\CategoryController@update');
+    //CATEGORIES
+    //Route::put('categories/{category}', 'App\\Http\\Controllers\\CategoryController@update');
 
-    });
+});

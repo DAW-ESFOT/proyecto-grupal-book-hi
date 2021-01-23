@@ -11,7 +11,7 @@ class Message extends Model
 //    use HasFactory;
     protected $fillable = ['message'];
 
-    public function Chat()
+    public function chat()
     {
         return $this->belongsTo('App\Models\Chat');
     }

@@ -17,9 +17,9 @@ class Message extends JsonResource
         return [
             'id' => $this->id,
             'message' => $this->message,
+            'chat' => "/api/chats/" . $this->chat_id,
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'chat' => "/api/chats/" .$this->chat_id
+            'updated_at' => $this->updated_at
         ];
     }
 }
