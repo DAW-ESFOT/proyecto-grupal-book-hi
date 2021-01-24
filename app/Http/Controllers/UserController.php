@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Resources\User as UserResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use JWTAuth;
@@ -14,12 +15,12 @@ class UserController extends Controller
 {
     public static $messages = [];
     public static $rules = [
-        'name'=> 'required|string',
-        'last_name'=>'required|string',
+        'name'=> 'nullable|string',
+        'last_name'=>'nullable|string',
         'nickname'=>'max:255',
-        'email'=>'required|e-mail',
-        'password'=>'required',
-        'image' => 'required|image|dimensions:min_width=200,min_height=200',
+        'email'=>'nullable|e-mail',
+        'password'=>'nullable',
+        'image' => 'nullable|image|dimensions:min_width=200,min_height=200',
         'ruc'=>'nullable|numeric',
         'bussiness_name'=>'nullable|max:255',
         'bussiness_address'=>'nullable|max:255',
@@ -90,8 +91,9 @@ class UserController extends Controller
         return response()->json(new UserResource($user), 200);
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
+        $user = Auth::user();
         $request->validate(self::$rules, self::$messages);
         $user->update($request->all());
         return response()->json($user, 200);

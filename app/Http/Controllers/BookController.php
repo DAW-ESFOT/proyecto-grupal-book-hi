@@ -102,10 +102,10 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function showmybook(Book $book)
+    /*public function showmybook(Book $book)
     {
         $user = Auth::user();
         $book = $user->books()->where('id', $book->id)->firstOrFail();
         return response()->json($book, 200);
-    }
+    }*/
 }
