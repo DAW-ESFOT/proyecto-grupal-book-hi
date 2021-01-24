@@ -23,8 +23,8 @@ Route::get('categories/{category}', 'App\\Http\\Controllers\\CategoryController@
 Route::group(['middleware' => ['jwt.verify']], function () {
 
     Route::get('user', 'App\\Http\\Controllers\\UserController@getAuthenticatedUser');
-    Route::get('users/{user}', 'App\\Http\\Controllers\\UserController@show');
-    Route::put('users/{user}', 'App\\Http\\Controllers\\UserController@update');
+    //Route::get('users/{user}', 'App\\Http\\Controllers\\UserController@show');
+    Route::put('user', 'App\\Http\\Controllers\\UserController@update');
 
     //CHAT
     Route::get('chats', 'App\\Http\\Controllers\\ChatController@index');
@@ -38,7 +38,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 
     //BOOKS
     Route::get('user/books', 'App\\Http\\Controllers\\BookController@showmybooks');
-    Route::get('user/books/{book}', 'App\\Http\\Controllers\\BookController@showmybook');
+    //Route::get('user/books/{book}', 'App\\Http\\Controllers\\BookController@showmybook');
     Route::post('user/books', 'App\\Http\\Controllers\\BookController@store');
     Route::put('user/books/{book}', 'App\\Http\\Controllers\\BookController@update');
     Route::delete('user/books/{book}', 'App\\Http\\Controllers\\BookController@delete');
