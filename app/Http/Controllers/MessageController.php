@@ -28,14 +28,14 @@ class MessageController extends Controller
     }
     public function update(Request $request, Message $message)
     {
-        $this->authorize('update',$message);
+        //$this->authorize('update',$message);
 
         $message->update($request->all());
         return response()->json($message, 200);
     }
     public function delete(Request $request, Message $message)
     {
-        $this->authorize('delte',$message);
+        //$this->authorize('delete',$message);
 
         $message->delete();
         return response()->json(null,204);

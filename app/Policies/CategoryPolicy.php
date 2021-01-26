@@ -26,7 +26,7 @@ class CategoryPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        //return true;
     }
 
     /**
@@ -38,7 +38,7 @@ class CategoryPolicy
      */
     public function view(User $user, Category $category)
     {
-        //
+        //return true
     }
 
     /**
@@ -49,7 +49,7 @@ class CategoryPolicy
      */
     public function create(User $user)
     {
-        return $user->isGranted(User::ROLE_USER);
+        return $user->isGranted(User::ROLE_ADMIN);
     }
 
     /**
@@ -61,7 +61,7 @@ class CategoryPolicy
      */
     public function update(User $user, Category $category)
     {
-        return $user->isGranted(User::ROLE_USER) ;
+        return $user->isGranted(User::ROLE_ADMIN) ;
     }
 
     /**

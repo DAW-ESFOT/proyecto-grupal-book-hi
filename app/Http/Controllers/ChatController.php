@@ -28,14 +28,14 @@ class ChatController extends Controller
     }
     public function update(Request $request, Chat $chat)
     {
-        $this->authorize('update',$chat);
+       // $this->authorize('update',$chat);
 
         $chat->update($request->all());
         return response()->json($chat,200);
     }
     public function delete(Request $request, Chat $chat)
     {
-        $this->authorize('delete',$chat);
+        //$this->authorize('delete',$chat);
 
         $chat->delete();
         return response()->json(null,204);

@@ -83,11 +83,13 @@ class UserController extends Controller
 
     public function show(User $user)
     {
+        //$this->authorize('view',$user)
         return response()->json(new UserResource($user), 200);
     }
 
     public function update(Request $request, User $user)
     {
+        //$this->authorize('update',$user)
         $request->validate(self::$rules, self::$messages);
         $user->update($request->all());
         return response()->json($user, 200);

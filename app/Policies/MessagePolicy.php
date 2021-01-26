@@ -61,7 +61,7 @@ class MessagePolicy
      */
     public function update(User $user, Message $message)
     {
-        return $user->isGranted(User::ROLE_USER) && $user->id === $message->chat_id;
+        //return $user->isGranted(User::ROLE_USER) && $user->id === $message->chat_id;
     }
 
     /**
@@ -73,7 +73,7 @@ class MessagePolicy
      */
     public function delete(User $user, Message $message)
     {
-        return $user->isGranted(User::ROLE_USER) && $user->id === $message->chat_id;
+        //return $user->isGranted(User::ROLE_USER) && $user->id === $message->chat_id;
     }
 
     /**

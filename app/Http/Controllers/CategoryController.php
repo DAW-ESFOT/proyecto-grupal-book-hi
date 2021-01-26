@@ -28,7 +28,7 @@ class CategoryController extends Controller
 
     public function store(Request $request, User $user)
     {
-        $this->authorize('create',$user);
+        //$this->authorize('create',$user);
 
         $request->validate(self::$rules, self::$messages);
         $category = Category::create($request->all());
@@ -37,7 +37,7 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $category)
     {
-        $this->authorize('update',$category);
+        //$this->authorize('update',$category);
 
         $request->validate(self::$rules, self::$messages);
         $category->update($request->all());
@@ -46,7 +46,7 @@ class CategoryController extends Controller
 
     public function delete(Request $request, Category $category)
     {
-        $this->authorize('delete',$category);
+        //$this->authorize('delete',$category);
 
         $category->delete();
         return response()->json(null, 204);

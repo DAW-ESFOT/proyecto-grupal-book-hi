@@ -2,14 +2,12 @@
 
 namespace App\Policies;
 
-use App\Models\Chat;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ChatPolicy
+class UserPolicy
 {
     use HandlesAuthorization;
-
     public function before($user, $ability)
     {
         if ($user->isGranted(User::ROLE_ADMIN)) {
@@ -25,17 +23,17 @@ class ChatPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->isGranted(User::ROLE_USER);
+        //return $user->isGranted(User::ROLE_USER);
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Chat  $chat
+     * @param  \App\Models\User  $model
      * @return mixed
      */
-    public function view(User $user, Chat $chat)
+    public function view(User $user, User $model)
     {
         return $user->isGranted(User::ROLE_USER);
     }
@@ -48,41 +46,42 @@ class ChatPolicy
      */
     public function create(User $user)
     {
-        return $user->isGranted(User::ROLE_USER);
+        //
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Chat  $chat
+     * @param  \App\Models\User  $model
      * @return mixed
      */
-    public function update(User $user, Chat $chat)
+    public function update(User $user, User $model)
     {
-        //return $user->isGranted(User::ROLE_USER) && $user->id === $chat->user_id;
+       // return $user->isGranted(User::ROLE_USER);
+        //return $user->isGranted(User::ROLE_USER) && $user->id ===     ->user_id;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Chat  $chat
+     * @param  \App\Models\User  $model
      * @return mixed
      */
-    public function delete(User $user, Chat $chat)
+    public function delete(User $user, User $model)
     {
-       // return $user->isGranted(User::ROLE_USER);
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Chat  $chat
+     * @param  \App\Models\User  $model
      * @return mixed
      */
-    public function restore(User $user, Chat $chat)
+    public function restore(User $user, User $model)
     {
         //
     }
@@ -91,10 +90,10 @@ class ChatPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Chat  $chat
+     * @param  \App\Models\User  $model
      * @return mixed
      */
-    public function forceDelete(User $user, Chat $chat)
+    public function forceDelete(User $user, User $model)
     {
         //
     }
