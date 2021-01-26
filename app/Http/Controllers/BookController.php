@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Http\Resources\Book as BookResource;
 use App\Http\Resources\BookCollection;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -40,7 +41,6 @@ class BookController extends Controller
     public function show(Book $book)
     {
         //$this->authorize('View',Book::class);
-
         return response()->json(new BookResource($book), 200);
     }
 
@@ -100,12 +100,11 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param Category $category
      * @return \Illuminate\Http\JsonResponse
      */
-    /*public function showmybook(Book $book)
+    public function filter(Category $category)
     {
-        $user = Auth::user();
-        $book = $user->books()->where('id', $book->id)->firstOrFail();
-        return response()->json($book, 200);
-    }*/
+        return response()->json(BookResource::collection($category->books), 200);
+    }
 }

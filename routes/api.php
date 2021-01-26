@@ -18,12 +18,11 @@ Route::post('login', 'App\\Http\\Controllers\\UserController@authenticate');
 Route::get('books', 'App\\Http\\Controllers\\BookController@index');
 Route::get('books/{book}', 'App\\Http\\Controllers\\BookController@show');
 Route::get('categories', 'App\\Http\\Controllers\\CategoryController@index');
-Route::get('categories/{category}', 'App\\Http\\Controllers\\CategoryController@show');
+Route::get('books/categories/{category}', 'App\\Http\\Controllers\\BookController@filter');
 
 Route::group(['middleware' => ['jwt.verify']], function () {
 
     Route::get('user', 'App\\Http\\Controllers\\UserController@getAuthenticatedUser');
-    //Route::get('users/{user}', 'App\\Http\\Controllers\\UserController@show');
     Route::put('user', 'App\\Http\\Controllers\\UserController@update');
 
     //CHAT
@@ -38,12 +37,8 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 
     //BOOKS
     Route::get('user/books', 'App\\Http\\Controllers\\BookController@showmybooks');
-    //Route::get('user/books/{book}', 'App\\Http\\Controllers\\BookController@showmybook');
     Route::post('user/books', 'App\\Http\\Controllers\\BookController@store');
     Route::put('user/books/{book}', 'App\\Http\\Controllers\\BookController@update');
     Route::delete('user/books/{book}', 'App\\Http\\Controllers\\BookController@delete');
-
-    //CATEGORIES
-    //Route::put('categories/{category}', 'App\\Http\\Controllers\\CategoryController@update');
 
 });
