@@ -38,8 +38,10 @@ class MessageController extends Controller
     public function store(Request $request, Chat $chat)
     {
 
-        $this->authorize('create', Message::class);
-
+        $this->authorize('create', $chat);
+        //$request->validate([
+          //  'message'=> 'required',
+        //]);
         $message = $chat->messages()->save(new Message($request->all()));
         return response()->json($message, 201);
     }
@@ -51,9 +53,9 @@ class MessageController extends Controller
 
     public function delete(Message $message)
     {
-        $this->authorize('delete', $message);
+        /*$this->authorize('delete', $message);
 
         $message->delete();
-        return response()->json(null, 204);
+        return response()->json(null, 204);*/
     }
 }

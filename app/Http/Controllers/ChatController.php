@@ -48,9 +48,9 @@ class ChatController extends Controller
 
     public function delete(Chat $chat)
     {
-        $this->authorize('delete', $chat);
+        /*$this->authorize('delete', $chat);
 
         $chat->delete();
-        return response()->json(null, 204);
+        return response()->json(null, 204);*/
     }
 }

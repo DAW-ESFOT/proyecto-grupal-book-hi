@@ -37,18 +37,18 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $category)
     {
-        $this->authorize('update',$category);
+        /*$this->authorize('update',$category);
 
         $request->validate(self::$rules, self::$messages);
         $category->update($request->all());
-        return response()->json($category, 200);
+        return response()->json($category, 200);*/
     }
 
     public function delete(Request $request, Category $category)
     {
-        $this->authorize('delete',$category);
+        //$this->authorize('delete',$category);
 
-        $category->delete();
-        return response()->json(null, 204);
+        //$category->delete();
+        //return response()->json(null, 204);
     }
 }

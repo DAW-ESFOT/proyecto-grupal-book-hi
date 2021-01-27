@@ -28,7 +28,8 @@ class BookController extends Controller
         'cover_page' => 'required|image|dimensions:min_width=200,min_height=200',
         'back_cover' => 'image|dimensions:min_width=200,min_height=200',
         'available' => 'required|boolean',
-        'new' => 'required|boolean'
+        'new' => 'required|boolean',
+        'category_id'=>'required'
     ];
 
     public function index()
@@ -67,7 +68,9 @@ class BookController extends Controller
         //$book = $user->books()->save(new Book($request->all()));
         return response()->json(new BookResource($book), 201);
     }
-
+    public function available(){
+        return response()->json(BookResource::collection(Book::where('available', 1)->get()), 200);
+    }
     public function update(Request $request, Book $book)
     {
         $this->authorize('update',$book);
