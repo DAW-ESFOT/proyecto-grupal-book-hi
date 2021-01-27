@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewChat;
+use App\Models\Book;
 use App\Models\Chat;
 use App\Http\Resources\Chat as ChatResource;
 use App\Http\Resources\ChatCollection;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ChatController extends Controller
 {
@@ -35,7 +38,10 @@ class ChatController extends Controller
     {
         $this->authorize('create', Chat::class);
         $chat = Chat::create($request->all());
-        return response()->json($chat, 201);
+
+        Mail::to($chat->user2->email)->send(new NewChat($chat));
+
+        return response()->json(new ChatResource($chat), 201);
     }
 
     public function update(Request $request, Chat $chat)
