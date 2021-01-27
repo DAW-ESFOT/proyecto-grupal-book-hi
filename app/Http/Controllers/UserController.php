@@ -19,7 +19,7 @@ class UserController extends Controller
         'last_name'=>'nullable|string',
         'nickname'=>'max:255',
         'email'=>'nullable|e-mail',
-        'password'=>'nullable',
+        'password'=>'nullable|confirmed',
         'image' => 'nullable|image|dimensions:min_width=200,min_height=200',
         'ruc'=>'nullable|numeric',
         'bussiness_name'=>'nullable|max:255',

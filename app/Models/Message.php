@@ -10,6 +10,13 @@ class Message extends Model
 {
 //    use HasFactory;
     protected $fillable = ['message'];
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($message) {
+            $message->user_id = Auth::id();
+        });
+    }
 
     public function chat()
     {

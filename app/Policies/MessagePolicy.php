@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Chat;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -45,11 +46,13 @@ class MessagePolicy
      * Determine whether the user can create models.
      *
      * @param  \App\Models\User  $user
+     * @param App\Models\Chat $chat
      * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user, Chat $chat)
     {
-        return $user->isGranted(User::ROLE_USER);
+
+        return $user->isGranted(User::ROLE_USER) && $user->id === $chat->user_id1;
     }
 
     /**
@@ -61,7 +64,7 @@ class MessagePolicy
      */
     public function update(User $user, Message $message)
     {
-        return $user->isGranted(User::ROLE_USER) && $user->id === $message->chat_id;
+        return $user->isGranted(User::ROLE_USER); //&& $user->id === $message->chat_id;
     }
 
     /**
