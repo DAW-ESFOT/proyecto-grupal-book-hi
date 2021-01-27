@@ -52,7 +52,7 @@ class MessagePolicy
     public function create(User $user, Chat $chat)
     {
 
-        return $user->isGranted(User::ROLE_USER) && $user->id === $chat->user_id1;
+        return $user->isGranted(User::ROLE_USER) && ($user->id === $chat->user_id1 || $user->id === $chat->user_id2);
     }
 
     /**

@@ -38,7 +38,7 @@ class MessageController extends Controller
     public function store(Request $request, Chat $chat)
     {
 
-        $this->authorize('create', $chat);
+        $this->authorize('create', [Message::class, $chat]);
         //$request->validate([
           //  'message'=> 'required',
         //]);
