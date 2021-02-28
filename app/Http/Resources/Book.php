@@ -29,8 +29,9 @@ class Book extends JsonResource
             'back_cover' => $this->back_cover,
             'available' => $this->available,
             'new' => $this->new,
-            'category' => "/api/categories/" .$this->category_id,
-            'user' => "/api/users/" .$this->user_id
+            'category' => Category::find($this->category_id)->name,
+            'user' => User::find($this->user_id)->name,
+
         ];
     }
 }

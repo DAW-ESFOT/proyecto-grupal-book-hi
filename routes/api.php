@@ -18,6 +18,7 @@ Route::post('login', 'App\\Http\\Controllers\\UserController@authenticate');
 Route::get('books', 'App\\Http\\Controllers\\BookController@index');
 Route::get('books/available', 'App\\Http\\Controllers\\BookController@available');
 Route::get('books/{book}', 'App\\Http\\Controllers\\BookController@show');
+Route::get('books/title/{book}', 'App\\Http\\Controllers\\BookController@searchTitle');
 Route::get('categories', 'App\\Http\\Controllers\\CategoryController@index');
 Route::get('books/categories/{category}', 'App\\Http\\Controllers\\BookController@filter');
 
