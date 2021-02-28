@@ -10,6 +10,8 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class BookController extends Controller
 {
@@ -38,10 +40,17 @@ class BookController extends Controller
 
         return new BookCollection(Book::paginate(10));
     }
+    public function searchTitle($title)
+    {
 
+        $book = DB::table('books')
+            ->where('title', 'like', '%'.$title.'%')
+            ->get();
+        return response()->json(new BookCollection($book));
+    }
     public function show(Book $book)
     {
-        //$this->authorize('View',Book::class);
+
         return response()->json(new BookResource($book), 200);
     }
 
