@@ -37,7 +37,20 @@ class UserController extends Controller
         } catch (JWTException $e) {
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
-        return response()->json(compact('token'));
+        $user = JWTAuth::user();
+        return response()->json(compact('token','user'))
+            ->withCookie(
+              'token',
+              $token,
+              config('jwt.ttl'), // ttl => time to live
+              '/', // path
+              null, // domain
+              config('app.env') !== 'local', // secure
+              true, // httpOnly
+              false,
+              config('app.env') !== 'local' ? 'None' : 'Lax' // SameSite
+            );
+
     }
 
     public function register(Request $request)
@@ -67,7 +80,18 @@ class UserController extends Controller
             'image' => $path,
         ]);
         $token = JWTAuth::fromUser($user);
-        return response()->json(compact('user', 'token'), 201);
+        return response()->json(new UserResource($user, $token), 201)
+            ->withCookie(
+                'token',
+                $token,
+                config('jwt.ttl'), // ttl => time to live
+                '/', // path
+                null, // domain
+                config('app.env') !== 'local', // secure
+                true, // httpOnly
+                false,
+                config('app.env') !== 'local' ? 'None' : 'Lax' // SameSite
+            );
     }
 
     public function getAuthenticatedUser()
@@ -97,5 +121,19 @@ class UserController extends Controller
         $request->validate(self::$rules, self::$messages);
         $user->update($request->all());
         return response()->json($user, 200);
+    }
+    public function logout()
+    {
+        try {
+            JWTAuth::invalidate(JWTAuth::getToken());
+
+            return response()->json([
+                "status" => "success",
+                "message" => "User successfully logged out."
+            ], 200);
+        } catch (JWTException $e) {
+            // something went wrong whilst attempting to encode the token
+            return response()->json(["message" => "No se pudo cerrar la sesión."], 500);
+        }
     }
 }
