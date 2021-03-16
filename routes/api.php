@@ -26,6 +26,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 
     Route::get('user', 'App\\Http\\Controllers\\UserController@getAuthenticatedUser');
     Route::put('user', 'App\\Http\\Controllers\\UserController@update');
+    Route::post('logout', 'App\\Http\\Controllers\\UserController@logout');
 
     //CHAT
     Route::get('chats', 'App\\Http\\Controllers\\ChatController@index');
