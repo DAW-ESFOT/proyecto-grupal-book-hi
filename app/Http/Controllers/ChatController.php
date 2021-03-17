@@ -39,7 +39,7 @@ class ChatController extends Controller
         $this->authorize('create', Chat::class);
         $chat = Chat::create($request->all());
 
-        Mail::to($chat->user2->email)->send(new NewChat($chat));
+//        Mail::to($chat->user2->email)->send(new NewChat($chat));
 
         return response()->json(new ChatResource($chat), 201);
     }
