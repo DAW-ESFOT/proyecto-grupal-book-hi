@@ -19,7 +19,8 @@ class Book extends Model
         'cover_page',
         'back_cover',
         'available',
-        'new'
+        'new',
+        'category_id'
     ];
 
     public static function boot()

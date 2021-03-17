@@ -33,6 +33,20 @@ class BookController extends Controller
         'new' => 'required|boolean',
         'category_id'=>'required'
     ];
+    public static $repulses = [
+        'title' => 'string',
+        'author' => 'string',
+        'editorial' => 'string',
+        'year_edition' => 'numeric',
+        'price' => 'numeric',
+        'pages' => 'numeric',
+        'synopsis' => 'string|max:255',
+        'cover_page' => 'image|dimensions:min_width=200,min_height=200',
+        'back_cover' => 'image|dimensions:min_width=200,min_height=200',
+        'available' => 'boolean',
+        'new' => 'boolean',
+        'category_id'=>'numeric'
+    ];
 
     public function index()
     {
@@ -84,7 +98,7 @@ class BookController extends Controller
     {
         $this->authorize('update',$book);
 
-        $request->validate(self::$rules, self::$messages);
+        $request->validate(self::$repulses, self::$messages);
         $book->update($request->all());
         return response()->json($book, 200);
     }
